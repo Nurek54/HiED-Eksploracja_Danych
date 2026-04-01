@@ -38,8 +38,8 @@ Zbiór jest stosunkowo zbalansowany (55.5% / 44.5%).
 Cecha o najsilniejszej zdolności dyskryminacyjnej - prawdziwe banknoty przyjmują wyraźnie wyższe wartości wariancji niż sfałszowane.
 
 <p align="center">
-  <img src="hist_variance.png" width="480" alt="Histogram cechy variance">
-  <img src="hist_variance_by_class.png" width="480" alt="Histogram variance wg klasy">
+  <img src="plots/hist_variance.png" width="480" alt="Histogram cechy variance">
+  <img src="plots/hist_variance_by_class.png" width="480" alt="Histogram variance wg klasy">
 </p>
 
 ### Skewness
@@ -47,8 +47,8 @@ Cecha o najsilniejszej zdolności dyskryminacyjnej - prawdziwe banknoty przyjmuj
 Rozkład skośności jest wielomodalny. Klasy częściowo się nakładają, ale banknoty prawdziwe skupiają się w okolicach wartości dodatnich (5–10), a sfałszowane - ujemnych i bliskich zeru.
 
 <p align="center">
-  <img src="hist_skewness.png" width="480" alt="Histogram cechy skewness">
-  <img src="hist_skewness_by_class.png" width="480" alt="Histogram skewness wg klasy">
+  <img src="plots/hist_skewness.png" width="480" alt="Histogram cechy skewness">
+  <img src="plots/hist_skewness_by_class.png" width="480" alt="Histogram skewness wg klasy">
 </p>
 
 ### Curtosis (kurtoza)
@@ -56,8 +56,8 @@ Rozkład skośności jest wielomodalny. Klasy częściowo się nakładają, ale 
 Rozkład jest prawoskośny z długim ogonem. Obie klasy nakładają się mocno w przedziale −5…5, ale klasa 1 (fałszywki) częściej przyjmuje wartości skrajne (>10).
 
 <p align="center">
-  <img src="hist_curtosis.png" width="480" alt="Histogram cechy curtosis">
-  <img src="hist_curtosis_by_class.png" width="480" alt="Histogram curtosis wg klasy">
+  <img src="plots/hist_curtosis.png" width="480" alt="Histogram cechy curtosis">
+  <img src="plots/hist_curtosis_by_class.png" width="480" alt="Histogram curtosis wg klasy">
 </p>
 
 ### Entropy
@@ -65,8 +65,8 @@ Rozkład jest prawoskośny z długim ogonem. Obie klasy nakładają się mocno w
 Entropia jest skoncentrowana wokół 0 dla obu klas. Różnice między klasami są tu niewielkie - to cecha o najsłabszej sile dyskryminacyjnej.
 
 <p align="center">
-  <img src="hist_entropy.png" width="480" alt="Histogram cechy entropy">
-  <img src="hist_entropy_by_class.png" width="480" alt="Histogram entropy wg klasy">
+  <img src="plots/hist_entropy.png" width="480" alt="Histogram cechy entropy">
+  <img src="plots/hist_entropy_by_class.png" width="480" alt="Histogram entropy wg klasy">
 </p>
 
 ## Eksperymenty
@@ -87,7 +87,7 @@ Zastosowano **stratyfikowaną 10-krotną walidację krzyżową** do zbadania wp�
 Najwyższy F1-score uzyskano dla `max_depth = 6`. Dalsze zwiększanie głębokości (None = bez ograniczeń) nieznacznie obniża wynik, co sugeruje lekkie przeuczenie.
 
 <p align="center">
-  <img src="f1_vs_max_depth.png" width="560" alt="Wykres F1 vs max_depth">
+  <img src="plots/f1_vs_max_depth.png" width="560" alt="Wykres F1 vs max_depth">
 </p>
 
 ### Ewaluacja na zbiorze testowym
@@ -97,7 +97,7 @@ Model z `max_depth = 6` wytrenowano na 80% danych i przetestowano na pozostałyc
 #### Macierz pomyłek
 
 <p align="center">
-  <img src="confusion_matrix_tree.png" width="480" alt="Macierz pomyłek">
+  <img src="plots/confusion_matrix_tree.png" width="480" alt="Macierz pomyłek">
 </p>
 
 Na 275 próbek testowych model popełnił jedynie **2 błędy** - oba to fałszywe pozytywy (prawdziwe banknoty zaklasyfikowane jako fałszywki). Daje to dokładność na poziomie **99.3%**.
@@ -105,7 +105,7 @@ Na 275 próbek testowych model popełnił jedynie **2 błędy** - oba to fałszy
 ### Struktura drzewa decyzyjnego
 
 <p align="center">
-  <img src="decision_tree_structure.png" width="100%" alt="Struktura drzewa decyzyjnego">
+  <img src="plots/decision_tree_structure.png" width="100%" alt="Struktura drzewa decyzyjnego">
 </p>
 
 Korzeń drzewa dzieli próbki po cesze `variance ≤ 0.703` - co potwierdza, że wariancja jest najważniejszą cechą dyskryminacyjną w tym zbiorze.
@@ -122,10 +122,11 @@ Korzeń drzewa dzieli próbki po cesze `variance ≤ 0.703` - co potwierdza, że
 ├── banknote_summary_stats.csv   # Statystyki opisowe
 ├── banknote_class_counts.csv    # Rozkład klas
 ├── cv_results_depth.csv         # Wyniki walidacji krzyżowej
-├── hist_*.png                   # Histogramy cech
-├── f1_vs_max_depth.png          # Wykres F1 vs max_depth
-├── confusion_matrix_tree.png    # Macierz pomyłek
-└── decision_tree_structure.png  # Wizualizacja drzewa
+└── plots/
+    ├── hist_*.png                   # Histogramy cech
+    ├── f1_vs_max_depth.png          # Wykres F1 vs max_depth
+    ├── confusion_matrix_tree.png    # Macierz pomyłek
+    └── decision_tree_structure.png  # Wizualizacja drzewa
 ```
 
 ## Uruchomienie
